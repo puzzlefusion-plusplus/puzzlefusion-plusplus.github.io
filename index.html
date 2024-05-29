@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="PuzzleFusion++: Auto-agglomerative 3D Fracture Assembly by Denoise and Verify">
+  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PuzzleFusion++: Auto-agglomerative 3D Fracture Assembly by Denoise and Verify</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <!-- MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">PuzzleFusion++: Auto-agglomerative 3D Fracture Assembly by Denoise and Verify</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://eric-zqwang.github.io/">Zhengqing Wang*</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://jcchen.me/">Jiacheng Chen*</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://yasu-furukawa.github.io/">Yasutaka Furukawa</a><sup>2</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup></sup>Simon Fraser University</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2011.12948"
+                   class="button is-normal is-rounded is-dark is-disabled"
+                   style="pointer-events: none;">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="button is-normal is-rounded is-dark is-disabled"
+                   style="pointer-events: none;">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="button is-normal is-rounded is-dark is-disabled"
+                   style="pointer-events: none;">                  
+                   <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/google/nerfies"
+                  class="button is-normal is-rounded is-dark is-disabled"
+                  style="pointer-events: none;">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp4"
+                type="video/mp4">
+      </video> -->
+      <img src="./static/images/teaser.png" alt="PuzzleFusion++ teaser image."/>
+
+      <h2 class="subtitle has-text-centered">
+        PuzzleFusion++ iteratively aligns and assembles fracture fragments into a 3D shape
+      </h2>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" style="margin-top: -1.5rem; padding-top: 0;">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            This paper proposes a novel “auto-agglomerative” 3D fracture assembly method, PuzzleFusion++, 
+            resembling how humans solve challenging spatial puzzles.
+          </p>
+          <p>
+            Starting from individual fragments, the approach 
+            1) aligns and merges fragments into larger groups akin to agglomerative clustering and 
+            2) repeats the process iteratively in completing the assembly akin to auto-regressive methods. 
+            Concretely, a diffusion model denoises the 6-DoF alignment parameters of the fragments simultaneously, 
+            and a transformer model verifies and merges pairwise alignments into larger ones, 
+            whose process repeats iteratively.
+          </p>
+          <p>
+            Extensive experiments on the Breaking Bad dataset show that 
+            PuzzleFusion++ outperforms all other state-of-the-art techniques 
+            by significant margins across all metrics. 
+            In particular by over 10% in part accuracy and 50% in Chamfer distance. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-2">Video</h2>
+        <div class="publication-video">
+
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<!-- Single Examples. -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="is-centered has-text-centered">
+      <h2 class="title is-4">Single Examples</h2>
+      <p>
+        We visualize all the iterations of our auto-agglomerative assembly process. 
+        Each iteration runs the SE(3) Denoiser and the Pairwise Alignment Verifier 
+        to align and assemble fracture fragments into larger pieces.
+      </p>
+      <p>
+        \[
+        \text{X/Y} = \frac{\# \text{ of correct fragments}}{\# \text{ of all the fragments}}
+        \]
+      </p>
+
+      <div class="box" style="border: 2px dashed #000; padding: 10px; margin-bottom: 20px; display: inline-block; width: 75%;">
+        <video id="replay-video" autoplay controls muted preload playsinline width="100%">
+          <source src="./static/videos/example_1.mp4" type="video/mp4">
+        </video>
+      </div>
+      
+      <div class="box" style="border: 2px dashed #000; padding: 10px; margin-bottom: 20px; display: inline-block; width: 75%;">
+        <video id="replay-video" autoplay controls muted preload playsinline width="100%">
+          <source src="./static/videos/example_2.mp4" type="video/mp4">
+        </video>
+      </div>
+      
+      <div class="box" style="border: 2px dashed #000; padding: 10px; margin-bottom: 20px; display: inline-block; width: 75%;">
+        <video id="replay-video" autoplay controls muted preload playsinline width="100%">
+          <source src="./static/videos/example_3.mp4" type="video/mp4">
+        </video>
+      </div>
+        
+    </div>
+  </div>
+  <!--/ Single Examples. -->
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- More Qualitative Results. -->
+    <div class="is-centered has-text-centered">        
+      <h2 class="title is-4">More Qualitative Results</h2>
+      <p>
+        <!-- We show more qualitative results of our auto-agglomerative assembly process. 
+        Each iteration runs the SE(3) Denoiser and the Pairwise Alignment Verifier 
+        to align and assemble fracture fragments into larger pieces. -->
+      </p>
+      <video id="replay-video" autoplay controls muted preload playsinline width="100%">
+        <source src="./static/videos/all_video_1.mp4"
+                type="video/mp4">
+      </video>
+      <video id="replay-video" autoplay controls muted preload playsinline width="100%">
+        <source src="./static/videos/all_video_2.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+    <!--/ More Qualitative Results. -->
+
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>
+      <!-- @article{park2021nerfies,
+  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+  title     = {Nerfies: Deformable Neural Radiance Fields},
+  journal   = {ICCV},
+  year      = {2021},
+} -->
+</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <!-- <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a> -->
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            We thanks Nerfies for sharing the page template.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
